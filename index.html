@@ -6,7 +6,7 @@
     <title>Simon Game</title>
     <style>
         :root{
-            --card-color: #726DA8;
+            --card-color: #4c4875;
             --active-color: #7D8CC4;
             --text-color: #ffffff;
         }
@@ -97,6 +97,9 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            position: absolute;
+            left: 10%;
+            top: 50%;
         }
 
         .acard, .icard{
@@ -131,9 +134,24 @@
             z-index: 9999;
         }
 
+        #timer{
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 4rem;
+            color: rgb(229, 202, 255);
+        }
+
+        .txt{
+            grid-row: 4;
+            grid-column: 1 / span 3;
+            
+        }
     </style>
 </head>
 <body>
+    <div id="timer"><span id="time-left"></span></div>
+
     <div class="pregame" id="pregame">
         <p>Press <span style="background-color: rebeccapurple;">Space Bar</span> to start</p>
     </div>
@@ -158,10 +176,8 @@
             <div class="card">7</div>
             <div class="card">8</div>
             <div class="card">9</div>
+            <p class="txt">Memorize the sequence then repeat it!</p>
         </div>
-
-
-
 
         <div class="guide">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -174,7 +190,6 @@
             </div>
         </div>
 
-        <p>Memorize the sequence then repeat it!</p>
     </div>
 
     <script src="script.js"></script>

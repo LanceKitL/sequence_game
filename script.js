@@ -80,7 +80,7 @@ function checkAnswer(currentStep) {
         
         if (userClickedPattern.length === gamePattern.length) {
             score += 6;
-            
+            timer = 31;
             setTimeout(() => {
                 nextRound();
             }, 1000);
@@ -96,7 +96,7 @@ function animateCard(card) {
     
     setTimeout(() => {
         card.classList.remove('active');
-    }, 300);
+    }, 250);
 }
 
 function gameOver() {
@@ -106,15 +106,16 @@ function gameOver() {
     // 2. Display the Game Over message
     gameUber.innerHTML = `Game Over! Your score: ${score}`;
     gameUber.style.display = "block";
-    gameUber.style.cssText = "position: absolute; inset: 0;";
+    gameUber.style.cssText = "position: absolute; inset: 0; z-index: 9999;";
 
     setTimeout(() => {
         document.body.classList.remove('shake', 'game-over-bg');
         gameUber.style.display = "none";
         pregame.style.display = "block";
-        pregame.style.cssText = "position: absolute; inset: 0;";
+        pregame.style.cssText = "position: absolute; inset: 0; z-index: 9999;";
 
         started = false;
         gameSpeed = 600; 
     }, 2000); 
 }
+
