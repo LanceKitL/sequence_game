@@ -10,7 +10,8 @@ let score = 0;
 let started = false;
 let isPlaying = false;
 let gameSpeed = 600;
-
+let pregame = document.getElementById("pregame");
+let gameUber = document.getElementById("gameUber");
 
 cards.forEach((card, index) => {
     card.addEventListener('click', () => {
@@ -24,9 +25,12 @@ cards.forEach((card, index) => {
     });
 });
 
-document.addEventListener('keydown', () => {
-    if (!started) {
-        startGame();
+document.addEventListener('keydown', (e) => {
+    if (e.keyCode == 32) {
+        pregame.style.display = "none";
+        setTimeout(()=>{
+            startGame();
+        },1000)
     }
 });
 
@@ -75,7 +79,7 @@ function checkAnswer(currentStep) {
     if (userClickedPattern[currentStep] === gamePattern[currentStep]) {
         
         if (userClickedPattern.length === gamePattern.length) {
-            score += 5;
+            score += 6;
             
             setTimeout(() => {
                 nextRound();
@@ -96,11 +100,21 @@ function animateCard(card) {
 }
 
 function gameOver() {
+    // 1. Immediate visual feedback (Shake & Red Flash)
     document.body.classList.add('shake', 'game-over-bg');
-    levelBox.innerHTML = "Game Over! Press any key to Restart";
-    started = false;
+    
+    // 2. Display the Game Over message
+    gameUber.innerHTML = `Game Over! Your score: ${score}`;
+    gameUber.style.display = "block";
+    gameUber.style.cssText = "position: absolute; inset: 0;";
+
     setTimeout(() => {
         document.body.classList.remove('shake', 'game-over-bg');
-    }, 500);
-    // You could add a 'game-over' class to the body for a red flash here
+        gameUber.style.display = "none";
+        pregame.style.display = "block";
+        pregame.style.cssText = "position: absolute; inset: 0;";
+
+        started = false;
+        gameSpeed = 600; 
+    }, 2000); 
 }
