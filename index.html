@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Game</title>
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: rgb(4, 4, 32);
+            color: white;
+            font-family: monospace;
+        }
+
+        .active{
+            box-shadow: 0 0 20px white;
+            transition: all .3s ease-in-out;
+            animation: anim .3s ease-in-out;
+        }
+
+        @keyframes anim {
+            0%{
+                background-color: green;
+                transform: scale(1);
+            }
+            50%{
+                transform: scale(1.04);
+                background-color: rgb(211, 252, 151);
+            }
+            100%{
+                    background-color: green;
+                transform: scale(1);
+            }
+        }
+
+        .card-container{
+            display: grid;
+            place-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            width: 600px;
+            gap: 1rem;
+        }
+
+        .card{
+            height: 200px;
+            width: 200px;
+            border-radius: 1rem;
+            border: 2px solid white;
+            background-color: rgb(2, 73, 2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+        }
+
+        /* Optional: Make the background flash red */
+        .game-over-bg {
+            background-color: rgba(110, 8, 8, 0.822) !important;
+            transition: background-color 0.2s;
+        }
+
+        .game-box{
+            text-align: center;
+        }
+
+        .scoreBoard{
+            margin: 1rem;
+        }
+
+        .guide{
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .acard, .icard{
+            width: 150px;
+            height: 20px;
+            border-radius: .3rem;
+        }
+        .acard{
+            background-color: rgb(211, 252, 151);
+        }
+        .icard{
+            background-color: green;
+        }
+
+        #level{
+            color:blueviolet;
+        }
+        #score{
+            color: blueviolet;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="game-box">
+            <h1 style="font-size: 2.5rem;">Sequence Memory Game</h1>
+            <div class="scoreBoard">
+                <span style="font-size: 1.5rem;">Level <span id="level">0</span></span> | 
+                <span style="font-size: 1.5rem;">Score <span id="score">0</span></span>
+            </div>
+        <div class="card-container">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+        </div>
+
+        <div class="guide">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div class="acard"></div>
+                <span>- Lit Up / Active</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div class="icard"></div>
+                <span>- Default / Off</span>
+            </div>
+        </div>
+
+        <p>Memorize the sequence then repeat it!</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
